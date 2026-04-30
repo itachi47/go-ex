@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestBubbleSort(t *testing.T) {
+func TestHeapSort(t *testing.T) {
 	tests := []struct {
 		name  string
 		input []int
@@ -41,15 +41,16 @@ func TestBubbleSort(t *testing.T) {
 			input: []int{42},
 			want:  []int{42},
 		},
-		// {
-		// 	name:  "empty slice",
-		// 	input: []int{},
-		// 	want:  []int{},
-		// },
+		{
+			name:  "empty slice",
+			input: []int{},
+			want:  []int{},
+		},
 	}
 
 	for _, tt := range tests {
-		got := append([]int(nil), tt.input...) // copy input
+		got := make([]int, len(tt.input))
+		copy(got, tt.input)
 
 		HeapSort(got, len(got))
 
